@@ -16,7 +16,7 @@ std::vector<Pokemon*> fileReader(std::string ruta) {
         exit(1);
     }
 
-    std::vector<std::vector<std::string>> pokemonData; // Matriz de datos
+    std::vector< std::vector<std::string> > pokemonData; // Matriz de datos
     std::vector<std::string> values; // Vector de datos por linea
 
     std::string line; // String de linea
