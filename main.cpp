@@ -1,161 +1,115 @@
 #include <iostream> // Using std::cout and so
 #include <vector> // To use std::vector and so
 #include <string> // To use std::string and so
+#include <sstream> //
 #include <fstream> // To read the databases file
-#include <cctype> // For isdigit()
 #include <map> // For making the types "Pla" is "Plant" and so
 
-/*
-void copyArray(std::vector<std::vector<int>> &A, std::vector<std::vector<int>> &B, int low, int high) {
-	for (int i = 0; i <= high; i++) {
-		A[i] = B[i];
-	}
-}
+#include "pokemon.h"
+#include "dataOrganizer.h"
 
-void mergeArray(std::vector<std::vector<int>> &A, std::vector<std::vector<int>> &B, int low, int mid, int high, int fD) {
-	int ind = low;
-	
-	int i = low;
-	int j = mid + 1;
+std::vector<Pokemon*> fileReader(std::string ruta) {
+    std::ifstream dataBase(ruta);
 
-	while (i <= mid && j <= high) {
-		if (A[i][fD] < A[j][fD]){
-			B[ind][fD] = A[i][fD];
-			i++;
-		} else {
-			B[ind][fD] = A[j][fD];
-			j++;
-		}
-		ind++;
-	}
-
-	while (i <= mid) {
-		B[ind][fD] = A[i][fD];
-		i++;
-		ind++;
-	}
-	
-	while (j <= high) {
-		B[ind][fD] = A[j][fD];
-		j++;
-		ind++;
-	}
-
-	copyArray(A, B, low, high);
-}
-
-
-void mergeSplit(std::vector<std::vector<int>> &A, std::vector<std::vector<int>> &B, int low, int high, int fD) {
-
-	if (low < high){
-
-		int mid = (high + low) / 2;
-		
-		mergeSplit(A, B, low, mid, fD);
-
-		mergeSplit(A, B, mid + 1, high, fD);
-
-		mergeArray(A, B, low, mid, high, fD);
-	}
-}
-
-
-std::vector<std::vector<int>> mergeSort(const std::vector<std::vector<int>> &source, int filterData) {
-	std::vector<std::vector<int>> v(source);
-	std::vector<std::vector<int>> tmp(v.size());
-
-	mergeSplit(v, tmp, 0, v.size() - 1, filterData);
-	
-	return v;
-}
-*/
-void swap(std::vector<std::vector<int>> &v, int i, int j) {
-	std::vector<int> aux = v[i];
-	v[i] = v[j];
-	v[j] = aux;
-}
-
-std::vector<std::vector<int>> bubbleSort(const std::vector<std::vector<int>> &source, int dataRef) {
-	std::vector<std::vector<int>> v(source);
-
-	for (int i = v.size() - 1; i > 0; i--) {
-		for (int j = 0; j < i; j++) {
-			if (v[j][dataRef] > v[j + 1][dataRef]) {
-				swap(v, j, j + 1);
-			}
-		}
-	}
-
-	return v;
-}
-
-bool onlyDigits(std::string str) {
-    for (char c : str) {
-        if (!std::isdigit(c)) {return false;}
+    if (! dataBase.is_open()) { 
+        std::cerr << "No se pudo acceder a la base de datos" << std::endl;
+        exit(1);
     }
-    return true;
+
+    std::vector<std::vector<std::string>> pokemonData; // Matriz de datos
+    std::vector<std::string> values; // Vector de datos por linea
+
+    std::string line; // String de linea
+    std::string value; // String de atributo
+    
+
+    while (std::getline(dataBase, line)) {
+        std::stringstream ss(line);
+        values.clear();
+        value = "";
+
+        while (std::getline(ss, value, ',')) {
+            values.push_back(value);
+        }
+
+        pokemonData.push_back(values);
+    }
+
+    dataBase.close();
+
+    std::vector<Pokemon*> pokemons;
+
+    for (int i = 0; i < pokemonData.size(); i++) {
+        Pokemon * p = new Pokemon(pokemonData[i][0],pokemonData[i][1],pokemonData[i][2],
+        pokemonData[i][3],pokemonData[i][4],pokemonData[i][5],pokemonData[i][6]);
+        pokemons.push_back(p);
+    }
+
+    return pokemons;
+}
+
+int findPokemon(std::vector<Pokemon*> pks, std::string nm) {
+    int index = 0;
+    for (Pokemon* p:pks) {
+        if (p->getName() == nm) {
+            return index;
+        }
+        index++;
+    }
+    std::cout << "Pokemon no encontrado";
+    return -1;
 }
 
 int main () {
-	std::ifstream dataBase("database.txt"); // ifstream es para lectura
-	
-    if (! dataBase.is_open()) { // Si el archivo no está abierto, marca error
-        std::cerr << "No se pudo acceder a la base de datos" << std::endl;
-        return 0; // Termina el programa
+    std::vector<Pokemon*> pokemons = fileReader("databaseUnsorted.txt");
+
+    char input;
+    int opt;
+
+    std::cout << std::endl << "Introduce la opcion para ordenar a tus pokemons:" << std::endl << std::endl;
+    std::cout << "1) Ordenar por Stats totales" << std::endl << "2) Ordenar por Stats promedio" << std::endl;
+    std::cout << "Introduce cualquier otra opcion para ordenar por ID" << std::endl << std::endl << ">>> ";
+    std::cin >> input;
+
+    if (input == '1') {
+        opt = 1;
+    } else if (input == '2') {
+        opt = 2;
+    } else {
+        opt = 0;
     }
 
-    std::vector<std::string> pokemonData; // Vector de Datos sin separar
-    std::string dataTemp; // String de datos sin separar
+    mergeSort(pokemons, opt);
 
-    while (std::getline(dataBase, dataTemp)) { // Hasta que ya no haya líneas, lee cada línea
-        pokemonData.push_back(dataTemp); // Almacenar cada línea en el vector
+    std::cout << std::endl << "Introduce la opcion para mostrar a tus pokemons:" << std::endl << std::endl;
+    std::cout << "1) Mostrar Sort Data" << std::endl << "2) Mostrar Sort Variable" << std::endl;
+    std::cout << "Introduce cualquier otra opcion para mostrar todo" << std::endl << std::endl << ">>> ";
+    std::cin >> input;
+
+    if (input == '1') {
+        for (Pokemon* p : pokemons) {p -> showSortData();}
+    } else if (input == '2') {
+        for (Pokemon* p : pokemons) {p -> showSortData(opt);}
+    } else {
+        for (Pokemon* p : pokemons) {p -> showAllData();}
     }
 
-    dataBase.close(); // Cerramos el archivo
+    std::string search;
+    std::cout << std::endl << "Introduce el nombre del Pokemon que buscas: ";
+    std::cin >> search;
 
-    std::vector<std::vector <std::string>> dataVecStr;
-    std::vector<std::vector <int>> dataVecInt;
-	
-    std::string temp = "";
-    std::vector<std::string> tempVecStrings;
-    std::vector<int> tempVecInt;
+    int index = findPokemon(pokemons, search);
     
-    for (std::string str : pokemonData) {
-        tempVecStrings.clear();
-        tempVecInt.clear();
-        
-        for (char c : str) {
-            if (c == ',') {
-                if (onlyDigits(temp)) {
-                    tempVecInt.push_back(std::stoi(temp));
-                }
-                tempVecStrings.push_back(temp);
-                temp = "";
-            }            
-            else {
-                temp += c;  // Acumular el carácter en temp
-            }
-        }
-        tempVecStrings.push_back(temp);
-        temp = "";
-        dataVecStr.push_back(tempVecStrings);
-        dataVecInt.push_back(tempVecInt);
+    if (index != -1) {
+        pokemons[index]  -> showAllData();
     }
 
-    int dataRef = 1; // 0 ordena por ID, 1 por Stats Totales y 2 por Stats Promedio
-
-    dataVecInt = bubbleSort(dataVecInt, dataRef);
-
-    for (std::vector<int> vec : dataVecInt) {
-        int ind = vec[0]-1;
-        
-        std::cout << "#";
-        
-        for (int j = 0; j < 7; j++) {
-            std::cout << dataVecStr[ind][j] << " ";
-        }
-        std::cout << std::endl << std::endl;
+    for (Pokemon* p : pokemons) {
+        p -> clear();
+        delete p;
     }
+
+    std::cin >> input;
 
     return 0;
 }
