@@ -4,6 +4,13 @@
 #include "pokemon.h"
 #include <vector>
 
+/*
+Este análisis resume MergeSort con sus auxiliares
+Peor caso: O(n log n)
+Promedio: O(n log n)
+Mejor caso: O(n log n)
+*/
+
 void copyArray(std::vector<Pokemon*> &A, std::vector<Pokemon*> &B, int low, int high) {
     for (int i = low; i <= high; ++i) {
         *A[i] = *B[i];
