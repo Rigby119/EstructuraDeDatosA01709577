@@ -23,13 +23,16 @@ Más que nada terminé de implementar las funciones que tenía en el segundo ava
 ### Main.cpp
 Ejecuta el siguiente comando en la terminal:
 
-`g++ g++ -std=c++11 dataOrganizer.h pokemon.h main.cpp -o pokedexViewer`
+`g++ -std=c++11 dataOrganizer.h pokemon.h main.cpp`
 
 ## Instrucciones para ejecutar el avance de proyecto
 ### Main.cpp
 Ejecuta el siguiente comando en la terminal:
 
-`.\pokedexViewer.exe`
+Windows:
+`.\a.exe`
+Linux o Mac:
+`.\a.out`
 
 ## Descripción de las entradas del avance de proyecto
 El sistema puede leer un archivo de texto (databaseKanto.txt o databaseNational.txt) que contiene la información de los pokémon, y luego almacenar estos datos en un vector de objetos Pokemon. Este archivo se estructura de la siguiente manera:
