@@ -134,8 +134,8 @@ void welcome() {
 
 /*
 Peor caso: O(i)
-Promedio: O(i)
-Mejor caso: O(i)
+Promedio: O(1)
+Mejor caso: O(1)
 Dónde i es la cantidad de veces que el usuario se equivoca +1
 */
 void repeat() {
@@ -159,8 +159,8 @@ void repeat() {
 
 /*
 Peor caso: O(i)
-Promedio: O(i)
-Mejor caso: O(i)
+Promedio: O(1)
+Mejor caso: O(1)
 Dónde i es la cantidad de veces que el usuario se equivoca +1
 */
 void selectPokedex() {
@@ -192,8 +192,8 @@ void selectPokedex() {
 
 /*
 Peor caso: O(i)
-Promedio: O(i)
-Mejor caso: O(i)
+Promedio: O(1)
+Mejor caso: O(1)
 Dónde i es la cantidad de veces que el usuario se equivoca +1
 */
 void mostrarAccionesPokedex() {
@@ -232,8 +232,8 @@ void mostrarAccionesPokedex() {
 
 /*
 Peor caso: O(i)
-Promedio: O(i)
-Mejor caso: O(i)
+Promedio: O(1)
+Mejor caso: O(1)
 Dónde i es la cantidad de veces que el usuario se equivoca +1
 */
 void todos() {
@@ -275,8 +275,8 @@ void todos() {
 /*
 Sin contar mergeSort que tiene su propio análisis:
 Peor caso: O(i)
-Promedio: O(i)
-Mejor caso: O(i)
+Promedio: O(1)
+Mejor caso: O(1)
 Dónde i es la cantidad de veces que el usuario se equivoca +1
 */
 void nombre() {
@@ -297,8 +297,8 @@ void nombre() {
 /*
 Sin contar FindPokemonsType que tiene su propio análisis:
 Peor caso: O(i)
-Promedio: O(i)
-Mejor caso: O(i)
+Promedio: O(1)
+Mejor caso: O(1)
 Dónde i es la cantidad de veces que el usuario se equivoca +1
 */
 void tipo() {
