@@ -23,7 +23,7 @@ Más que nada terminé de implementar las funciones que tenía en el segundo ava
 ### Main.cpp
 Ejecuta el siguiente comando en la terminal:
 
-`g++ dataOrganizer.h pokemon.h main.cpp -o pokedexViewer`
+`g++ g++ -std=c++11 dataOrganizer.h pokemon.h main.cpp -o pokedexViewer`
 
 ## Instrucciones para ejecutar el avance de proyecto
 ### Main.cpp
