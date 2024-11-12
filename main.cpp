@@ -366,7 +366,7 @@ int main () {
     if (!archivo) {
         std::cerr << "Error al abrir el archivo" << std::endl;
     }
-    std::cout << pokemons.size();
+
     for (int i = 0; i < pokemons.size(); ++i) {
         Pokemon* p = pokemons[i];
         
