@@ -1,3 +1,27 @@
+# Problemas: LeetCode
+Listado de problemas, sus submissions y sus videos
+
+## Algoritmos de Sorting
+Use un Bubble Sort
+### Submission:
+https://leetcode.com/problems/sort-colors/submissions/1451175405/
+### Video:
+https://drive.google.com/file/d/1oH7mEnIZAxldd7KhmwVqBQECk2XcrK8n/view?usp=sharing
+
+## Estructuras Lineales
+Use Stack, Queue y List
+### Submission:
+https://leetcode.com/problems/reorder-list/submissions/1451288005/
+### Video:
+https://drive.google.com/file/d/1ARqIycijq7-jSyMYAQUeQP1wHUl9OdED/view?usp=sharing
+
+## Estructuras no Lineales
+
+### Submission:
+https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/1451270629/
+### Video:
+https://drive.google.com/file/d/1uRG1uH5IKPI_47ldTKqHXbe3hU7pfqbN/view?usp=sharing
+
 # Proyecto: Pokedex Viewer
 Una herramienta para visualizar una base de datos tipo pokedex en la que puedes acceder y organizar la información sobre distintos pokemones.
 
@@ -66,7 +90,7 @@ Y también usa Stack para busquedas en las que queremos obtener los datos en el 
 #### Hace un análisis de complejidad correcto y completo para todos los demás componentes del programa y determina la complejidad final del programa.
 El resto de funciones incluye su análisis de complejidad en el código en dónde está implementada en forma de comentario.
 
-El programa en sí tendrá una complejidad de al menos O(n) debido a que esta es la complejidad de la lectura de archivo este sería el mejor caso, en el caso promedio, el programa tendrá una complejidad de O(n) también o O(nlogn) dependiendo qué funciones ejecute el usuario debido a que las funciones de todos() y tipos() pasan por todos los datos de la base de datos. Cómo peor caso podríamos decir que la complejidad es O(i) dónde i es la cantidad de veces que el usuario se mantiene dentro del ciclo, pudiendo hacer multiples operaciones.
+El programa en sí tendrá una complejidad de al menos O(n) debido a que esta es la complejidad de la lectura de archivo este sería el mejor caso, en el caso promedio, el programa tendrá una complejidad O(nlogn) como promedio. Cómo peor caso podríamos decir que la complejidad es O(i) dónde i es la cantidad de veces que el usuario se mantiene dentro del ciclo, pudiendo hacer multiples operaciones.
 
 ### SICT0302: Toma decisiones
 #### Selecciona y usa una estructura de datos adecuada al problema
